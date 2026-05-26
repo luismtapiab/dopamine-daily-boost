@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+import StreakBadge from '../components/StreakBadge';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <title>About — Dopamine Daily Boost</title>
+  <meta name="description" content="Learn about the philosophy behind Dopamine Daily Boost and self-compassion in digital dependence." />
+  <!-- Preload Pico CSS -->
+  <link rel="preload" href="/node_modules/@picocss/pico/css/pico.min.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/node_modules/@picocss/pico/css/pico.min.css"></noscript>
+  <!-- Custom CSS (global) -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+</head>
+<body>
+  <main class="container" style="padding-top: 1rem; padding-bottom: 2rem;">
+    <nav style="margin-bottom: 1.5rem;">
+      <ul>
+        <li>
+          <a href="/" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+            <strong style="color: var(--primary); font-size: 1.3rem;">⚡ Daily Boost</strong>
+          </a>
+        </li>
+      </ul>
+      <ul style="align-items: center; gap: 0.5rem;">
+        <li><a href="/">Spin</a></li>
+        <li><a href="/log">History</a></li>
+        <li><a href="/my-list">Customize</a></li>
+        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><StreakBadge client:load /></li>
+      </ul>
+    </nav>
+
+    <article style="padding: 1.5rem;">
+      <h1>About the Philosophy</h1>
+      
+      <p>
+        Social media platforms are deliberately designed loops engineered to capture your attention and provide instant dopamine rewards. Breaking free from this loop doesn't require sudden, perfect discipline—it requires better alternatives.
+      </p>
+
+      <blockquote>
+        <strong>The kettle method:</strong> If you organize a time for social media with a clear, naturally constrained window (like the time it takes for a kettle to boil), it works far better than an open-ended block.
+      </blockquote>
+
+      <h3>Key Principles</h3>
+      <ul>
+        <li><strong>Frequency over Perfection:</strong> Missed days shouldn't break your momentum or invite guilt. Continuing the streak is about showing up again, not having a perfect record.</li>
+        <li><strong>Opt-in Novelty:</strong> The Dopamine Roulette diversifies your daily activities by introducing random suggestions. If we landing on different types of rewards, our urge to search for novelty elsewhere decreases.</li>
+        <li><strong>Compassionate Logging:</strong> When you get distracted or slip, acknowledging it honestly and planning a tiny adjustment for tomorrow is a victory. Shame stops progress; awareness builds it.</li>
+      </ul>
+
+      <hr />
+
+      <footer style="margin-top: 1rem; border-top: none; padding: 0;">
+        <p style="font-style: italic; margin: 0; color: var(--muted-color);">
+          Original concept and design advice by <strong>luismtapiab</strong>.
+        </p>
+      </footer>
+    </article>
+
+    <footer style="margin-top: 2rem; text-align: center; border-top: 1px solid var(--card-border-color); padding-top: 1rem;">
+      <a href="/" style="font-size: 0.9rem;">← Back to the Spin Wheel</a>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import StreakBadge from '../components/StreakBadge';
+import Wheel from '../components/Wheel';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  
+  <!-- SEO tags -->
+  <title>Dopamine Daily Boost — Compassionate Distraction Manager</title>
+  <meta name="description" content="A once-a-day weighted wheel that recommends healthy activities instead of scrolling social media. Keep a streak based on frequency, not perfection." />
+  <!-- Preload Pico CSS -->
+  <link rel="preload" href="/node_modules/@picocss/pico/css/pico.min.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/node_modules/@picocss/pico/css/pico.min.css"></noscript>
+  <!-- Custom CSS (global) -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+</head>
+<body>
+  <main class="container" style="padding-top: 1rem; padding-bottom: 2rem;">
+    <nav style="margin-bottom: 1rem;">
+      <ul>
+        <li>
+          <a href="/" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+            <strong style="color: var(--primary); font-size: 1.3rem;">⚡ Daily Boost</strong>
+          </a>
+        </li>
+      </ul>
+      <ul style="align-items: center; gap: 0.5rem;">
+        <li><a href="/" class="active">Spin</a></li>
+        <li><a href="/log">History</a></li>
+        <li><a href="/my-list">Customize</a></li>
+        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><StreakBadge client:load /></li>
+      </ul>
+    </nav>
+
+    <header style="margin-bottom: 1rem; text-align: center;">
+      <h2 style="margin-bottom: 0.25rem;">Spin the Wheel</h2>
+      <p style="color: var(--muted-color); font-size: 1rem; margin-bottom: 0;">
+        Make something instead. Organize windows of time. Be compassionate.
+      </p>
+    </header>
+
+    <section>
+      <Wheel client:load />
+    </section>
+
+    <footer style="margin-top: 2rem; text-align: center; border-top: 1px solid var(--card-border-color); padding-top: 1rem;">
+      <p style="color: var(--muted-color); max-width: 550px; display: inline-block; font-size: 0.85rem; margin-bottom: 0.5rem;">
+        "Be compassionate with yourself because our brain has never in history received more easy entertainment than today. Look for frequency rather than discipline."
+      </p>
+      <div style="font-size: 0.85rem; color: var(--muted-color);">
+        Concept by <strong>luismtapiab</strong> • <a href="/about" style="text-decoration: underline;">About the Philosophy</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

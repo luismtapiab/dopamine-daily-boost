@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import StreakBadge from '../components/StreakBadge';
+import HistoryLog from '../components/HistoryLog';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <title>Your History — Dopamine Daily Boost</title>
+  <meta name="description" content="View your past activities, reflections, slips and frequency journey." />
+  <!-- Preload Pico CSS -->
+  <link rel="preload" href="/node_modules/@picocss/pico/css/pico.min.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/node_modules/@picocss/pico/css/pico.min.css"></noscript>
+  <!-- Custom CSS (global) -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+</head>
+<body>
+  <main class="container" style="padding-top: 1rem; padding-bottom: 2rem;">
+    <nav style="margin-bottom: 1.5rem;">
+      <ul>
+        <li>
+          <a href="/" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+            <strong style="color: var(--primary); font-size: 1.3rem;">⚡ Daily Boost</strong>
+          </a>
+        </li>
+      </ul>
+      <ul style="align-items: center; gap: 0.5rem;">
+        <li><a href="/">Spin</a></li>
+        <li><a href="/log" class="active">History</a></li>
+        <li><a href="/my-list">Customize</a></li>
+        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><StreakBadge client:load /></li>
+      </ul>
+    </nav>
+
+    <header style="margin-bottom: 1.5rem;">
+      <h2 style="margin-bottom: 0.25rem;">Your History Log</h2>
+      <p style="color: var(--muted-color); font-size: 1rem; margin-bottom: 0;">
+        Look for frequency rather than discipline. Log your progress and adjust gently.
+      </p>
+    </header>
+
+    <section>
+      <HistoryLog client:load />
+    </section>
+
+    <footer style="margin-top: 2rem; text-align: center; border-top: 1px solid var(--card-border-color); padding-top: 1rem;">
+      <p style="color: var(--muted-color); font-size: 0.85rem; margin-bottom: 0.5rem;">
+        "Be compassionate with yourself because our brain has never in history received more easy entertainment than today."
+      </p>
+      <div style="font-size: 0.85rem; color: var(--muted-color);">
+        Concept by <strong>luismtapiab</strong> • <a href="/about" style="text-decoration: underline;">About the Philosophy</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
