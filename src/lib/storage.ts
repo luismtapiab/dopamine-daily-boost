@@ -1,8 +1,9 @@
 export interface Activity {
   id: string;
   text: string;
+  shortName?: string;
   category: 'doing' | 'watching' | 'treat' | 'wildcard';
-  isHealthy: boolean; // Custom activities tag, default activities have pre-defined values
+  isHealthy: boolean;
   isCustom?: boolean;
 }
 
@@ -26,29 +27,29 @@ export interface StreakInfo {
 // Default list of activities
 export const DEFAULT_ACTIVITIES: Activity[] = [
   // Doing (Weight 5 default)
-  { id: 'd1', text: 'Cook or bake something from scratch', category: 'doing', isHealthy: true },
-  { id: 'd2', text: 'Sketch, doodle, or color a page', category: 'doing', isHealthy: true },
-  { id: 'd3', text: 'Go for a 15-minute walk outside without your phone', category: 'doing', isHealthy: true },
-  { id: 'd4', text: 'Call a friend or family member for a quick chat', category: 'doing', isHealthy: true },
-  { id: 'd5', text: 'Play an instrument or sing a song (even badly)', category: 'doing', isHealthy: true },
-  { id: 'd6', text: 'Clean/organize one small space (like a single drawer)', category: 'doing', isHealthy: true },
-  { id: 'd7', text: 'Do 10 minutes of light stretching or yoga', category: 'doing', isHealthy: true },
+  { id: 'd1', text: 'Cook or bake something from scratch', shortName: 'Cook/Bake', category: 'doing', isHealthy: true },
+  { id: 'd2', text: 'Sketch, doodle, or color a page', shortName: 'Draw/Doodle', category: 'doing', isHealthy: true },
+  { id: 'd3', text: 'Go for a 15-minute walk outside without your phone', shortName: 'Walk (no phone)', category: 'doing', isHealthy: true },
+  { id: 'd4', text: 'Call a friend or family member for a quick chat', shortName: 'Call a loved one', category: 'doing', isHealthy: true },
+  { id: 'd5', text: 'Play an instrument or sing a song (even badly)', shortName: 'Play music', category: 'doing', isHealthy: true },
+  { id: 'd6', text: 'Clean/organize one small space (like a single drawer)', shortName: 'Tidy one spot', category: 'doing', isHealthy: true },
+  { id: 'd7', text: 'Do 10 minutes of light stretching or yoga', shortName: 'Stretch/Yoga', category: 'doing', isHealthy: true },
 
   // Watching (Weight 2 default)
-  { id: 'w1', text: 'Watch one episode of a show you genuinely love (no auto-play)', category: 'watching', isHealthy: true },
-  { id: 'w2', text: 'Watch a short documentary or educational video', category: 'watching', isHealthy: true },
-  { id: 'w3', text: 'Watch a live concert recording of your favorite band', category: 'watching', isHealthy: true },
+  { id: 'w1', text: 'Watch one episode of a show you genuinely love (no auto-play)', shortName: 'Loved show episode', category: 'watching', isHealthy: true },
+  { id: 'w2', text: 'Watch a short documentary or educational video', shortName: 'Watch documentary', category: 'watching', isHealthy: true },
+  { id: 'w3', text: 'Watch a live concert recording of your favorite band', shortName: 'Live concert vid', category: 'watching', isHealthy: true },
 
   // Treats (Weight 3 default)
-  { id: 't1', text: 'Enjoy your favorite snack slowly and mindfully', category: 'treat', isHealthy: false },
-  { id: 't2', text: 'Take a guilt-free 20-minute power nap', category: 'treat', isHealthy: false },
-  { id: 't3', text: 'Explore a silly YouTube rabbit hole (set a 10m timer first!)', category: 'treat', isHealthy: false },
-  { id: 't4', text: 'Reread a favorite chapter from a book you love', category: 'treat', isHealthy: true },
+  { id: 't1', text: 'Enjoy your favorite snack slowly and mindfully', shortName: 'Mindful snack', category: 'treat', isHealthy: false },
+  { id: 't2', text: 'Take a guilt-free 20-minute power nap', shortName: 'Power nap', category: 'treat', isHealthy: false },
+  { id: 't3', text: 'Explore a silly YouTube rabbit hole (set a 10m timer first!)', shortName: 'YouTube rabbit hole', category: 'treat', isHealthy: false },
+  { id: 't4', text: 'Reread a favorite chapter from a book you love', shortName: 'Reread fav book ch.', category: 'treat', isHealthy: true },
 
   // Wildcards (Weight 2 default)
-  { id: 'wc1', text: 'Do one small task you have been putting off all week', category: 'wildcard', isHealthy: true },
-  { id: 'wc2', text: 'Learn one weird or interesting Wikipedia fact', category: 'wildcard', isHealthy: true },
-  { id: 'wc3', text: 'Perform a small random act of kindness', category: 'wildcard', isHealthy: true }
+  { id: 'wc1', text: 'Do one small task you have been putting off all week', shortName: 'Do delayed task', category: 'wildcard', isHealthy: true },
+  { id: 'wc2', text: 'Learn one weird or interesting Wikipedia fact', shortName: 'Wiki weird fact', category: 'wildcard', isHealthy: true },
+  { id: 'wc3', text: 'Perform a small random act of kindness', shortName: 'Act of kindness', category: 'wildcard', isHealthy: true }
 ];
 
 export function getCustomActivities(): Activity[] {

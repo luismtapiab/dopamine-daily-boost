@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import StreakBadge from '../components/StreakBadge';
 ---
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ import StreakBadge from '../components/StreakBadge';
         <li><a href="/">Spin</a></li>
         <li><a href="/log">History</a></li>
         <li><a href="/my-list">Customize</a></li>
-        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><StreakBadge client:load /></li>
+        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><div id="streak-badge-root"></div></li>
       </ul>
     </nav>
 
@@ -67,5 +66,15 @@ import StreakBadge from '../components/StreakBadge';
       <a href="/" style="font-size: 0.9rem;">← Back to the Spin Wheel</a>
     </footer>
   </main>
+
+  <script>
+    import { h, render } from 'preact';
+    import StreakBadge from '../components/StreakBadge';
+
+    const streakRoot = document.getElementById('streak-badge-root');
+    if (streakRoot) {
+      render(h(StreakBadge, {}), streakRoot);
+    }
+  </script>
 </body>
 </html>

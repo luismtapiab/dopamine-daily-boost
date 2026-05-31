@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import StreakBadge from '../components/StreakBadge';
-import HistoryLog from '../components/HistoryLog';
 ---
 
 <!DOCTYPE html>
@@ -33,7 +31,7 @@ import HistoryLog from '../components/HistoryLog';
         <li><a href="/">Spin</a></li>
         <li><a href="/log" class="active">History</a></li>
         <li><a href="/my-list">Customize</a></li>
-        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><StreakBadge client:load /></li>
+        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><div id="streak-badge-root"></div></li>
       </ul>
     </nav>
 
@@ -45,7 +43,7 @@ import HistoryLog from '../components/HistoryLog';
     </header>
 
     <section>
-      <HistoryLog client:load />
+      <div id="history-log-root"></div>
     </section>
 
     <footer style="margin-top: 2rem; text-align: center; border-top: 1px solid var(--card-border-color); padding-top: 1rem;">
@@ -57,5 +55,21 @@ import HistoryLog from '../components/HistoryLog';
       </div>
     </footer>
   </main>
+
+  <script>
+    import { h, render } from 'preact';
+    import StreakBadge from '../components/StreakBadge';
+    import HistoryLog from '../components/HistoryLog';
+
+    const streakRoot = document.getElementById('streak-badge-root');
+    if (streakRoot) {
+      render(h(StreakBadge, {}), streakRoot);
+    }
+
+    const historyRoot = document.getElementById('history-log-root');
+    if (historyRoot) {
+      render(h(HistoryLog, {}), historyRoot);
+    }
+  </script>
 </body>
 </html>

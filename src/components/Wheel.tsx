@@ -129,8 +129,7 @@ export default function Wheel() {
       ctx.textAlign = 'right';
       ctx.fillStyle = '#ffffff';
       
-      // Select shorter text display if too long
-      const text = item.text.length > 35 ? item.text.substring(0, 32) + '...' : item.text;
+      const text = item.shortName || (item.text.length > 35 ? item.text.substring(0, 32) + '...' : item.text);
       ctx.font = 'bold 13px sans-serif';
       ctx.fillText(text, radius - 25, 4);
       ctx.restore();

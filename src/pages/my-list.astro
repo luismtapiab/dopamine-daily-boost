@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import StreakBadge from '../components/StreakBadge';
-import CustomListManager from '../components/CustomListManager';
 ---
 
 <!DOCTYPE html>
@@ -33,7 +31,7 @@ import CustomListManager from '../components/CustomListManager';
         <li><a href="/">Spin</a></li>
         <li><a href="/log">History</a></li>
         <li><a href="/my-list" class="active">Customize</a></li>
-        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><StreakBadge client:load /></li>
+        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><div id="streak-badge-root"></div></li>
       </ul>
     </nav>
 
@@ -45,7 +43,7 @@ import CustomListManager from '../components/CustomListManager';
     </header>
 
     <section>
-      <CustomListManager client:load />
+      <div id="custom-list-manager-root"></div>
     </section>
 
     <footer style="margin-top: 2rem; text-align: center; border-top: 1px solid var(--card-border-color); padding-top: 1rem;">
@@ -57,5 +55,21 @@ import CustomListManager from '../components/CustomListManager';
       </div>
     </footer>
   </main>
+
+  <script>
+    import { h, render } from 'preact';
+    import StreakBadge from '../components/StreakBadge';
+    import CustomListManager from '../components/CustomListManager';
+
+    const streakRoot = document.getElementById('streak-badge-root');
+    if (streakRoot) {
+      render(h(StreakBadge, {}), streakRoot);
+    }
+
+    const customRoot = document.getElementById('custom-list-manager-root');
+    if (customRoot) {
+      render(h(CustomListManager, {}), customRoot);
+    }
+  </script>
 </body>
 </html>

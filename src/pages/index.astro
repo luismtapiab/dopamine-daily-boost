@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import StreakBadge from '../components/StreakBadge';
-import Wheel from '../components/Wheel';
 ---
 
 <!DOCTYPE html>
@@ -35,7 +33,7 @@ import Wheel from '../components/Wheel';
         <li><a href="/" class="active">Spin</a></li>
         <li><a href="/log">History</a></li>
         <li><a href="/my-list">Customize</a></li>
-        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><StreakBadge client:load /></li>
+        <li style="border-left: 1px solid var(--card-border-color); padding-left: 0.75rem; margin-left: 0.25rem;"><div id="streak-badge-root"></div></li>
       </ul>
     </nav>
 
@@ -47,7 +45,7 @@ import Wheel from '../components/Wheel';
     </header>
 
     <section>
-      <Wheel client:load />
+      <div id="wheel-root"></div>
     </section>
 
     <footer style="margin-top: 2rem; text-align: center; border-top: 1px solid var(--card-border-color); padding-top: 1rem;">
@@ -59,5 +57,21 @@ import Wheel from '../components/Wheel';
       </div>
     </footer>
   </main>
+
+  <script>
+    import { h, render } from 'preact';
+    import StreakBadge from '../components/StreakBadge';
+    import Wheel from '../components/Wheel';
+
+    const streakRoot = document.getElementById('streak-badge-root');
+    if (streakRoot) {
+      render(h(StreakBadge, {}), streakRoot);
+    }
+
+    const wheelRoot = document.getElementById('wheel-root');
+    if (wheelRoot) {
+      render(h(Wheel, {}), wheelRoot);
+    }
+  </script>
 </body>
 </html>

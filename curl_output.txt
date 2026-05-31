@@ -1,0 +1,59 @@
+To use Preact in an Astro project without relying on Babel, you can leverage Astro’s built-in esbuild and native Vite integration to handle your JSX instead of using the @astrojs/preact integration.Why Esbuild/Vite for Preact?Astro uses Vite under the hood, which natively processes and compiles .jsx files using esbuild. By bypassing Astro's Preact integration, you strip away the heavy Babel dependency chain, relying only on standard Preact and pure ESM transpilation.1. Setup Initial FilesEnsure your project is initiated and Preact is installed.bashnpm install preact
+Usa el código con precaución.2. Configure Vite (No Babel)Because Astro's default bundler (Vite) can handle Preact's JSX out of the box, you can tell Vite exactly how to parse your components.In your astro.config.mjs, instruct Vite to map React's JSX runtime to Preact without any Babel transpilation:javascriptimport { defineConfig } from 'astro/config';
+
+export default defineConfig({
+  vite: {
+    esbuild: {
+      // Directs Vite to handle JSX natively using Preact's runtime
+      jsxInject: `import { h, Fragment } from 'preact'`,
+      jsxFactory: 'h',
+      jsxFragment: 'Fragment',
+    },
+    resolve: {
+      alias: {
+        // Force the project to use Preact in place of React-specific references
+        'react': 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat',
+        'react/jsx-runtime': 'preact/jsx-runtime'
+      }
+    }
+  }
+});
+Usa el código con precaución.3. Creating your Preact ComponentsInside your /src/components/ directory, you can build your Preact components as usual. Simply ensure you explicitly import h (the hyperscript function) and Fragment to support JSX syntax without any transpilation magic.javascript// /src/components/Counter.jsx
+import { h, Fragment } from 'preact';
+import { useState } from 'preact/hooks';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <Fragment>
+      <div>Count: {count}</div>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </Fragment>
+  );
+}
+Usa el código con precaución.
+
+4. Hydrating in AstroWhen you import your Preact component into an Astro file (e.g., /src/pages/index.astro), you will need to bypass Astro’s @astrojs/preact renderer because it isn't configured in your integrations. Use dynamic imports and standard client-side strategies to load your Preact islands:astro---
+import Layout from '../layouts/Layout.astro';
+// Note: We don't use the standard astro integration for the Counter component
+---
+
+<Layout title="Preact with Esbuild">
+  <main>
+    <h1>Welcome to Astro</h1>
+    <!-- Client:load hydration will ship the preact component and hydrate it on the client -->
+    <div id="preact-root"></div>
+
+    <script>
+      import { h, render } from 'preact';
+      import { Counter } from '../components/Counter';
+
+      // Manually mount the Preact component into the DOM
+      render(h(Counter, {}), document.getElementById('preact-root'));
+    </script>
+  </main>
+</Layout>
+@
