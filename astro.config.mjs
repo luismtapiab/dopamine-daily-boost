@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+  base: '/dopamine-daily-boost/',
   devToolbar: {
     enabled: false
   },
